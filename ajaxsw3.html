@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='UTF-8'>
+    <title>Ajax com JQuery - Exemplo 1</title>
+    <link rel='stylesheet' href='css/estilo.css'>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+
+<body class="conteudo exercicio">
+    <h1>Saga Star Wars</h1>
+    <script>
+        $.ajax({
+            url: "https://www.swapi.tech/api/films",
+            method: "get",
+            success: function(res){
+                let lista_filmes = res.result
+                let lista_html = ''
+                for(let i=0;i<lista_filmes.length;i++){
+                    let filme = lista_filmes[i]
+                    lista_html = lista_html + `<li>${filme.properties.title}, dirigido por ${filme.properties.director} e lançado em ${filme.properties.release_date}</li>`
+                }
+                $('body').append(`<ul>${lista_html}</ul>`)
+            }
+        })
+    </script>
+</body>
